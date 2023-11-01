@@ -1,5 +1,5 @@
 *.json
-*.pkl
+# *.pkl
 *.zip
 *.csv
 myenvlens/
