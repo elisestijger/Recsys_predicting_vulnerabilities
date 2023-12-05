@@ -256,44 +256,44 @@ def main():
     activelsample20 = joblib.load('sample_allitems_40added_padd.pkl')
 
 
-    for key, sub_dict in activelsample40.items():
-        # Get the last dataframe from the list
-        dataframe_list = sub_dict['recommendation after active learning']
+    # for key, sub_dict in activelsample40.items():
+    #     # Get the last dataframe from the list
+    #     dataframe_list = sub_dict['recommendation after active learning']
         
-        # Extract the last dataframe (if the list is not empty)
-        if dataframe_list:  # Ensure the list is not empty
-            last_dataframe = dataframe_list[-1]  # Get the last dataframe
+    #     # Extract the last dataframe (if the list is not empty)
+    #     if dataframe_list:  # Ensure the list is not empty
+    #         last_dataframe = dataframe_list[-1]  # Get the last dataframe
             
-            # Update the dictionary value with the last dataframe only
-            sub_dict['recommendation after active learning'] = last_dataframe
+    #         # Update the dictionary value with the last dataframe only
+    #         sub_dict['recommendation after active learning'] = last_dataframe
         
-    for key, sub_dict in activelsample20.items():
-        # Get the last dataframe from the list
-        dataframe_list = sub_dict['recommendation after active learning']
+    # for key, sub_dict in activelsample20.items():
+    #     # Get the last dataframe from the list
+    #     dataframe_list = sub_dict['recommendation after active learning']
         
-        # Extract the last dataframe (if the list is not empty)
-        if dataframe_list:  # Ensure the list is not empty
-            last_dataframe = dataframe_list[-1]  # Get the last dataframe
+    #     # Extract the last dataframe (if the list is not empty)
+    #     if dataframe_list:  # Ensure the list is not empty
+    #         last_dataframe = dataframe_list[-1]  # Get the last dataframe
             
-            # Update the dictionary value with the last dataframe only
-            sub_dict['recommendation after active learning'] = last_dataframe
+    #         # Update the dictionary value with the last dataframe only
+    #         sub_dict['recommendation after active learning'] = last_dataframe
         
 
-    variable_names = ['correct counts', 'precision','ndcg', 'hit', 'recip_rank', 'mapk']
+    # variable_names = ['correct counts', 'precision','ndcg', 'hit', 'recip_rank', 'mapk']
 
-    for var_name in variable_names:
-        testingnewgraph20 = eval_active(activelsample20, var_name)  
-        testingnewgraph40 = eval_active(activelsample40, var_name)
+    # for var_name in variable_names:
+    #     testingnewgraph20 = eval_active(activelsample20, var_name)  
+    #     testingnewgraph40 = eval_active(activelsample40, var_name)
 
 
-        values_after_active_learning20 = list(testingnewgraph20[str(var_name)+ ' before active learning'].values())
-        values_after_active_learning40 = list(testingnewgraph40[str(var_name)+ ' after active learning'].values())
+    #     values_after_active_learning20 = list(testingnewgraph20[str(var_name)+ ' before active learning'].values())
+    #     values_after_active_learning40 = list(testingnewgraph40[str(var_name)+ ' after active learning'].values())
 
-        values_after_active_learningBEFORE = list(testingnewgraph20[str(var_name)+ ' after active learning'].values())
-        values_after_active_learningSAMPLING = list(testingnewgraph40[str(var_name)+ ' after active learning'].values())
+    #     values_after_active_learningBEFORE = list(testingnewgraph20[str(var_name)+ ' after active learning'].values())
+    #     values_after_active_learningSAMPLING = list(testingnewgraph40[str(var_name)+ ' after active learning'].values())
         
 
-        wilcoxon_test(values_after_active_learning20, values_after_active_learning40 )
+    #     wilcoxon_test(values_after_active_learning20, values_after_active_learning40 )
 
 # graphs with learning curves:
 
