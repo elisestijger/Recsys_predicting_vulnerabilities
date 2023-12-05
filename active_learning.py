@@ -21,8 +21,7 @@ from lenskit.algorithms import Recommender, als, item_knn as knn
 
 
 def activelearning(folds, unique_items):  
-    # first random : pick train data -> remove one user. Then pick randomly one item / check rating and add to interaction sequence
-# STARTS HERE   
+   
     dict_recommendations_all = {}
     list_recs_without_user = []
     users_removed = ['426', '1674', '1512', '3357', '1674']
@@ -41,8 +40,8 @@ def activelearning(folds, unique_items):
         most_common_users = user_counts.nlargest(10)
         most_common_users_list = most_common_users.index.tolist()
 
-# remove one user for train (before data)
-        user_to_remove = users_removed[p]     #random.choice(most_common_users_list)
+# remove one user for train (this is the "before" data)
+        user_to_remove = users_removed[p]     
         p = p + 1
         deleted_rows = train[train['user'] == user_to_remove]
         train_without_user = train[train['user'] != user_to_remove]
@@ -66,7 +65,7 @@ def activelearning(folds, unique_items):
         selected_items = []
 
 
-#  RANDOM PER ADD 
+#  RANDOM PER ADD -> random_sizes_user.pkl
 
         # train_without_user2 = train_without_user
         # list_recommendations_per_add = []
@@ -87,27 +86,9 @@ def activelearning(folds, unique_items):
         # key = 'test' 
         # dict_recommendations[key] = test
 
-# RANDOM NORMAL / VOOR ETEN 
 
-        # train_without_user2 = train_without_user
-        # for j in range(0,20):        
-        #     random_index = random.randint(0, len(unique_items2) - 1)
-        #     random_item = unique_items2[random_index]
-        #     if random_item in list(deleted_rows['item']):
-        #          train_without_user2 = train_without_user2.append(pd.Series([random_item, user_to_remove,1.0], index=train_without_user.columns), ignore_index=True)
-        
-        # model2 = Recommender.adapt(model2)
-        # model2.fit(train_without_user2)
-        # users = test.user.unique()
-        # recs_without_user2 = batch.recommend(model2, users, 5)
-        
-        # key = 'recommendation after active learning' 
-        # dict_recommendations[key] = recs_without_user2
 
-        # key = 'test' 
-        # dict_recommendations[key] = test
-
-# SAMPLE 40 ITEMS ALL ITEMS CONSIDERED -> PADD  -> joblib.dump(NAME, 'sample_allitems_40added_padd.pkl')
+# SAMPLE 40 ITEMS ALL ITEMS CONSIDERED  -> 'sample_allitems_40added_padd.pkl'
         
         list_with_items = samplingmethod(train_without_user, model2, deleted_rows, unique_items, test)
         sorted_keys = [key for key, value in sorted(list_with_items.items(), key=lambda item: item[1], reverse=True)]
@@ -130,7 +111,7 @@ def activelearning(folds, unique_items):
         key = 'test' 
         dict_recommendations[key] = test
 
-# SAMPLE 20 ITEMS ALL ITEMS CONSIDERED NOW -> PADD -> joblib.dump(NAME, 'sample_allitems_20added_padd.pkl')
+# SAMPLE 20 ITEMS ALL ITEMS CONSIDERED  ->  sample_allitems_20added_padd.pkl'
 
         # list_with_items = samplingmethod(train_without_user, model2, deleted_rows, unique_items, test)
         # sorted_keys = [key for key, value in sorted(list_with_items.items(), key=lambda item: item[1], reverse=True)]
@@ -154,7 +135,7 @@ def activelearning(folds, unique_items):
         # dict_recommendations[key] = test
 
 
-# # 4 BACTCHES SAMPLE ALL ITEMS CONSIDERED NOW -> PADD -> joblib.dump(NAME, 'sample_4batches_allitems_padd.pkl')
+# # 4 BACTCHES SAMPLE ALL ITEMS CONSIDERED (adjust number of added items to add 40 items in total) --> sample_4batches_allitems_padd.pkl'
 
 #         list_recommendations = []
 #         for b in range(4):
@@ -182,13 +163,13 @@ def activelearning(folds, unique_items):
 #         key = 'test' 
 #         dict_recommendations[key] = test
 
-# 10 BACTCHES SAMPLE ALL ITEMS CONSIDERED NOW -> PADD -> joblib.dump(NAME, 'sample_10batches_allitems_padd.pkl')
+# 10 BACTCHES SAMPLE ALL ITEMS CONSIDERED (adjust number of added items to add 40 items in total) -> sample_10batches_allitems_padd.pkl
 
         # list_recommendations = []
         # for b in range(10):
         #     list_with_items = samplingmethod(train_without_user, model2, deleted_rows, unique_items2, test)
         #     sorted_keys = [key for key, value in sorted(list_with_items.items(), key=lambda item: item[1], reverse=True)]
-        #     for k in sorted_keys[:2]:    
+        #     for k in sorted_keys[:2]:    	# add :2 to :4 if you want to add 40 items
         #         # delete this item from the unique_items2
         #         unique_items2 = [x for x in unique_items2 if x != k]
 
