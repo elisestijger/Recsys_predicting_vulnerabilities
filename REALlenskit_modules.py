@@ -8,7 +8,6 @@ from lenskit.algorithms.basic import Random
 from basic import Popular
 from lenskit.algorithms.basic import PopScore 
 from lenskit.algorithms import bias
-# from lenskit.algorithms.mf_common import MFPredictor
 from lenskit.algorithms.als import BiasedMF, ImplicitMF
 from lenskit.algorithms.svd import BiasedSVD
 from lenskit.algorithms.basic import Bias, Popular, TopN, AllItemsCandidateSelector
@@ -18,12 +17,10 @@ import numpy as np
 
 def make_recommendations(data, n):
     algo_ii = knn.ItemItem(10, feedback='implicit')  
-
-#UNCOMMENT:
-    # algo_uu = knn_user.UserUser(10, feedback='implicit')
-    # algo_random = Random()
-    # algo_pop = Popular()
-    # algo_pop2 = Popular(selector=AllItemsCandidateSelector())
+    algo_uu = knn_user.UserUser(10, feedback='implicit')
+    algo_random = Random()
+    algo_pop = Popular()
+    algo_pop2 = Popular(selector=AllItemsCandidateSelector())
 
     # NOT REALLY GOOD OUTCOMES:
 # UNCOMMENT
@@ -33,9 +30,9 @@ def make_recommendations(data, n):
     # algo_funksvd = funksvd.FunkSVD(50)
 
 
-    # algo_tf = PopScore()   #gives weird outcomes
-    # algo_bias = Bias()    #gives weird outcomes
-    # algo_MFPredictor = MFPredictor()
+    algo_tf = PopScore()   #gives weird outcomes
+    algo_bias = Bias()    #gives weird outcomes
+    algo_MFPredictor = MFPredictor()
 
     def eval(aname, algo, train, test, n):
         fittable = util.clone(algo)
@@ -78,70 +75,65 @@ def make_recommendations(data, n):
         recommendations_itemitem0 = eval('ItemItem', algo_ii, train, test, n)
         recommendations_itemitem = recommendations_itemitem0[0]
         recommendations_itemitem_model = recommendations_itemitem0[1]
-#UNCOMMENT:
-        # recommendations_useruser = eval('UserUser', algo_uu, train, test, n)
-        # recommendations_random = eval('algo_random', algo_random, train, test, n)
-        # recommendations_pop = eval('algo_pop_unseen', algo_pop, train, test, n)
-        # recommendations_als = eval('algo_als', algo_als, train, test, n)
-        # recommendations_implicitmf = eval('algo_implicitmf', algo_implicitmf, train, test, n)
-        # recommendations_biasedsvd = eval('algo_biasedsvd', algo_biasedsvd, train, test, n)
-        # recommendations_funksvd = eval('algo_funksvd', algo_funksvd, train, test, n)
-        # recommendations_pop2 = eval('algo_pop_seen', algo_pop2, train, test, n)
+        recommendations_useruser = eval('UserUser', algo_uu, train, test, n)
+        recommendations_random = eval('algo_random', algo_random, train, test, n)
+        recommendations_pop = eval('algo_pop_unseen', algo_pop, train, test, n)
+        recommendations_als = eval('algo_als', algo_als, train, test, n)
+        recommendations_implicitmf = eval('algo_implicitmf', algo_implicitmf, train, test, n)
+        recommendations_biasedsvd = eval('algo_biasedsvd', algo_biasedsvd, train, test, n)
+        recommendations_funksvd = eval('algo_funksvd', algo_funksvd, train, test, n)
+        recommendations_pop2 = eval('algo_pop_seen', algo_pop2, train, test, n)
 
 
 
         # recommendations_both = 
         all_recs.append(recommendations_itemitem)
-#UNCOMMENT:
-
-        # all_recs.append(recommendations_useruser)
-        # all_recs.append(recommendations_random)
-        # all_recs.append(recommendations_pop)
-        # all_recs.append(recommendations_als)
-        # all_recs.append(recommendations_implicitmf)
-        # all_recs.append(recommendations_biasedsvd)
-        # all_recs.append(recommendations_funksvd)
-        # all_recs.append(recommendations_pop2)
+        all_recs.append(recommendations_useruser)
+        all_recs.append(recommendations_random)
+        all_recs.append(recommendations_pop)
+        all_recs.append(recommendations_als)
+        all_recs.append(recommendations_implicitmf)
+        all_recs.append(recommendations_biasedsvd)
+        all_recs.append(recommendations_funksvd)
+        all_recs.append(recommendations_pop2)
 
 
 
         all_recs2.append(recommendations_itemitem)
-#UNCOMMENT:
-
-        # all_recs2.append(recommendations_useruser)
-        # all_recs2.append(recommendations_random)
-        # all_recs2.append(recommendations_pop)
-        # all_recs2.append(recommendations_als)
-        # all_recs2.append(recommendations_implicitmf)
-        # all_recs2.append(recommendations_biasedsvd)
-        # all_recs2.append(recommendations_funksvd)
-        # all_recs2.append(recommendations_pop2)
+        all_recs2.append(recommendations_useruser)
+        all_recs2.append(recommendations_random)
+        all_recs2.append(recommendations_pop)
+        all_recs2.append(recommendations_als)
+        all_recs2.append(recommendations_implicitmf)
+        all_recs2.append(recommendations_biasedsvd)
+        all_recs2.append(recommendations_funksvd)
+        all_recs2.append(recommendations_pop2)
 
 
-        # all_recs_per_fold.append(all_recs)
-        # all_test_per_fold.append(test)
-        # all_recs.append(eval('ALS', algo_als, train, test, n))
-        # # all_recs.append(eval('tf', algo_tf, train, test, n))
-        # # all_recs.append(eval('MFPredictor', algo_MFPredictor, train, test, n))
-        # # all_recs.append(eval('bias', algo_bias, train, test, n))
-        # all_recs.append(eval('implicitmf', algo_implicitmf, train, test, n))
-        # all_recs.append(eval('biasedsvd', algo_biasedsvd, train, test, n))
-        # all_recs.append(eval('funksvd', algo_funksvd, train, test, n))
+        all_recs_per_fold.append(all_recs)
+        all_test_per_fold.append(test)
+        all_recs.append(eval('ALS', algo_als, train, test, n))
+        # all_recs.append(eval('tf', algo_tf, train, test, n))
+        # all_recs.append(eval('MFPredictor', algo_MFPredictor, train, test, n))
+        # all_recs.append(eval('bias', algo_bias, train, test, n))
+        all_recs.append(eval('implicitmf', algo_implicitmf, train, test, n))
+        all_recs.append(eval('biasedsvd', algo_biasedsvd, train, test, n))
+        all_recs.append(eval('funksvd', algo_funksvd, train, test, n))
+        all_recs.append(eval('POP', algo_pop, train, test, n))
+        all_recs.append(eval('POP_seen', algo_pop2, train, test, n))
+
+
         # all_recs.append(eval('POP', algo_pop, train, test, n))
         # all_recs.append(eval('POP_seen', algo_pop2, train, test, n))
 
-
-        # # all_recs.append(eval('POP', algo_pop, train, test, n))
-        # # all_recs.append(eval('POP_seen', algo_pop2, train, test, n))
-
-        # # all_recs2.append(eval('tf', algo_tf, train, test, n))
-        # # all_recs2.append(eval('MFPredictor', algo_MFPredictor, train, test, n))
-        # # all_recs2.append(eval('bias', algo_bias, train, test, n))
-        # all_recs2.append(eval('implicitmf', algo_implicitmf, train, test, n))
-        # all_recs2.append(eval('biasedsvd', algo_biasedsvd, train, test, n))
-        # all_recs2.append(eval('funksvd', algo_funksvd, train, test, n))
-        # all_recs2.append(eval('POP', algo_pop, train, test, n))
-        # all_recs2.append(eval('POP_seen', algo_pop2, train, test, n))
+        # all_recs2.append(eval('tf', algo_tf, train, test, n))
+        # all_recs2.append(eval('MFPredictor', algo_MFPredictor, train, test, n))
+        # all_recs2.append(eval('bias', algo_bias, train, test, n))
+        all_recs2.append(eval('implicitmf', algo_implicitmf, train, test, n))
+        all_recs2.append(eval('biasedsvd', algo_biasedsvd, train, test, n))
+        all_recs2.append(eval('funksvd', algo_funksvd, train, test, n))
+        all_recs2.append(eval('POP', algo_pop, train, test, n))
+        all_recs2.append(eval('POP_seen', algo_pop2, train, test, n))
 
         fold_data[i] = {
         'Recommendations': all_recs2,
@@ -151,7 +143,6 @@ def make_recommendations(data, n):
     # get recs per fold + validation data 
     all_recs = pd.concat(all_recs, ignore_index=True)
     all_recs.head()
-    # all_recs.to_csv('/Users/elisestijger/Desktop/all_recs.csv')
 
     test_data = pd.concat(test_data, ignore_index=True)
     test_data.head()
