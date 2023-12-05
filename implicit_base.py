@@ -56,24 +56,5 @@ def implicitbase(matrix):
     print("COUNT",len(df[df['appears_in_matrix'] == 'TRUE']))
 
 
-    # df.to_csv('/Users/elisestijger/Desktop/implicitrecommenDF.csv')
-
-
-# END 
-    # print(sparse_matrix[user_ids])
-    #class 'numpy.ndarray = ids // OUTCOMES DIFFER 
-
-    # df_outcomes = pd.DataFrame({"artist": ids, "score": scores, "already_liked": np.in1d(ids, sparse_matrix[user_ids])})
-
-    # related = model.similar_items(item_id)
-
-
-    # # Recommend items for a user
-    # user_id = 3  # Replace with the user you want to recommend to
-    # recommendations = model.recommend(user_id, sparse_matrix)
-
-    # # Get item IDs from recommendations
-    # recommended_item_ids = [item_id for item_id, _ in recommendations]
 
     return sparse_matrix
-    # return ids, scores
