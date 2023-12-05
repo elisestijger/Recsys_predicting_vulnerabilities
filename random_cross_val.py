@@ -61,16 +61,3 @@ def start_random_cross(interaction_sequence, n, m):       # m = recom
     return results, itemitem_outcome, results_ngcd, outcome_ngcd
 
 
-# def __row_based_k_fold_validation_split(fold_indices: dict, data: pd.DataFrame, num_folds: int, random_state):
-#     splits = np.array_split(data, num_folds)
-
-#     # generate the indices of the train and validation split for the given data
-#     for i, splits in enumerate(partition_rows(data, partitions=num_folds, rng_spec=random_state)):
-#         train = pd.concat(splits[:i] + splits[i + 1:], axis=0, ignore_index=False)
-#         test = splits[i]
-
-#         fold_indices[i]["train"] = np.append(fold_indices[i]["train"], train.index  )  
-#         fold_indices[i]["validation"] = np.append(fold_indices[i]["validation"], test.index ) 
-#     return fold_indices
-
-
