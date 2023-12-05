@@ -71,7 +71,6 @@ def do_recommendations(data, n):
 
     all_recs = pd.concat(all_recs, ignore_index=True)
     all_recs.head()
-    # all_recs.to_csv('/Users/elisestijger/Desktop/all_recs.csv')
 
     test_data = pd.concat(test_data, ignore_index=True)
     test_data.head()
