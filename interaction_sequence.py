@@ -57,26 +57,7 @@ def make_interaction_sequence1_0(matrixCWE, zero_or_one):
         interaction_sequence_full = [(x[0], x[1], 1) for x in interaction_sequence]
         interaction_sequence_full = [(str(x[0]), str(x[1]), float(x[2])) for x in interaction_sequence_full]
 
-    # if zero_or_one == 0:
-    #     for user_id, col in rating_matrix.iterrows():
-    #         if user_id not in user_mapping:
-    #             user_mapping[user_id] = user_index
-    #             user_index += 1
 
-    #         for item_id, rating in col.iteritems():
-    #             if rating == 0:
-    #                 item_index = rating_matrix.columns.get_loc(item_id)
-
-    #                 if item_index not in product_mapping:
-    #                     product_mapping[item_index]= item_id
-
-    #                 users.append(user_mapping[user_id])
-    #                 items.append(item_index)
-    #                 interaction_sequence.append((user_mapping[user_id],item_index))
-        
-    #     # Insert the value 0 for every tuple in the list and make the type of the first two values a string and the last one a float
-    #     interaction_sequence_full = [(x[0], x[1], 0) for x in interaction_sequence]
-    #     interaction_sequence_full = [(str(x[0]), str(x[1]), float(x[2])) for x in interaction_sequence_full]
 
     return interaction_sequence_full, user_mapping, product_mapping
 
