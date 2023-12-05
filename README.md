@@ -6,4 +6,8 @@ Comments in the main.py will guide you.
 ## Using pickle 
 The .pkl files are stored data files used for the project. 
 
+## Implementing active learning
+In the main.py file there are mulitple comments for implementing active learning, make sure to also uncomment the desired selection in the active_learning.py file
+
+
 
