@@ -30,9 +30,6 @@ def make_graphs(evaluation, var_name):
     
     plt.tight_layout()
 
-    plt.savefig("/Users/elisestijger/Desktop/"+str(var_name) +"_implicit.png")
-
-
     return plt
 
 def make_bars(data, metrics , data2):
@@ -96,8 +93,6 @@ def make_bars(data, metrics , data2):
             ax.text(rect.get_x() + rect.get_width() / 2, height, f'{int(height)}', ha='center', va='bottom')
 
     plt.tight_layout()
-
-    plt.savefig("/Users/elisestijger/Desktop/graphs/"+str(metrics) +"_10batch.png")
 
     return plt
 
@@ -185,8 +180,6 @@ def make_bars2(data, metrics , data1, data2, data3, data4, data5, data0):
 
     plt.tight_layout()
 
-    plt.savefig("/Users/elisestijger/Desktop/graphs/"+str(metrics) +"_ALL_RANDOM.png")
-
     return plt
 
 
@@ -267,8 +260,6 @@ def learningcurve(evaluation, metrics):
 
     plt.tight_layout()
 
-    plt.savefig('/Users/elisestijger/Desktop/final plots active leaning/learning curve/random/random_'+str(metrics)+'.png')
-
     return plt
 
 def learningcurve_together(evaluations, metrics):
@@ -295,7 +286,6 @@ def learningcurve_together(evaluations, metrics):
     plt.legend(loc='lower left', bbox_to_anchor=(1, 0))
 
     plt.tight_layout()
-    plt.savefig('/Users/elisestijger/Desktop/graphs/10batch'+str(metrics)+'.png')
 
     return plt
 
